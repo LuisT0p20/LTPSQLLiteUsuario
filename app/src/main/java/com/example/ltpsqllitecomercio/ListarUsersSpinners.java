@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ListarUsersSpinners extends AppCompatActivity {
     Spinner cmbPersonas;
-    TextView txtId, txtNom, txtTel;
+    TextView txtId, txtNom, txtTel, txtForm;
     ArrayList<String> listaUsuarios;
     ArrayList<Usuario> UsuariosList;
     ConexionSqlHelper conn;
@@ -32,6 +32,7 @@ public class ListarUsersSpinners extends AppCompatActivity {
         txtId = findViewById(R.id.txtDocumento);
         txtNom = findViewById(R.id.txtNombre);
         txtTel = findViewById(R.id.txtTelefono);
+        txtForm = findViewById(R.id.txtFormaContacto);
         conn = new ConexionSqlHelper(this, Utilidades.NOMBREBD, null, Utilidades.VERSION);
         consultarUsuarios();
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaUsuarios);
@@ -43,11 +44,13 @@ public class ListarUsersSpinners extends AppCompatActivity {
                     txtId.setText(UsuariosList.get(position - 1).getId().toString());
                     txtNom.setText(UsuariosList.get(position - 1).getNombre().toString());
                     txtTel.setText(UsuariosList.get(position - 1).getTelefono().toString());
+                    txtForm.setText(UsuariosList.get(position - 1).getIdFormaContacto().toString());
                 }
                 else{
                     txtId.setText("");
                     txtNom.setText("");
                     txtTel.setText("");
+                    txtForm.setText("");
                 }
             }
 
@@ -66,9 +69,11 @@ public class ListarUsersSpinners extends AppCompatActivity {
             usuario.setId(cursor.getInt(0));
             usuario.setNombre(cursor.getString(1));
             usuario.setTelefono(cursor.getString(2));
+            usuario.setIdFormaContacto(cursor.getString(3));
             Log.i("id",usuario.getId().toString());
             Log.i("Nombre",usuario.getNombre().toString());
             Log.i("Telefono",usuario.getTelefono().toString());
+            Log.i("Forma contacto",usuario.getIdFormaContacto().toString());
             UsuariosList.add(usuario);
         }
         obtenerListaUsuarios();
@@ -78,7 +83,7 @@ public class ListarUsersSpinners extends AppCompatActivity {
         listaUsuarios = new ArrayList<String>();
         listaUsuarios.add("Seleccione");
         for (int i = 0; i < UsuariosList.size(); i++){
-            listaUsuarios.add(UsuariosList.get(i).getId() + " - " + UsuariosList.get(i).getNombre() + " - " + UsuariosList.get(i).getTelefono());
+            listaUsuarios.add(UsuariosList.get(i).getId() + " - " + UsuariosList.get(i).getNombre() + " - " + UsuariosList.get(i).getTelefono() + " - " + UsuariosList.get(i).getIdFormaContacto());
         }
     }
 }

@@ -38,6 +38,7 @@ public class ListarUsuarios extends AppCompatActivity {
                 String informacion="Id: " + listaUsuarios.get(i).getId()+"\n";
                 informacion+="Nombre: "+ listaUsuarios.get(i).getNombre()+"\n";
                 informacion+="telefono: " + listaUsuarios.get(i).getTelefono()+"\n";
+                informacion+="Forma contacto: " + listaUsuarios.get(i).getIdFormaContacto()+"\n";
                 Toast.makeText(ListarUsuarios.this, informacion, Toast.LENGTH_SHORT).show();
             }
         });
@@ -53,6 +54,7 @@ public class ListarUsuarios extends AppCompatActivity {
             usuario.setId(cursor.getInt(0));
             usuario.setNombre(cursor.getString(1));
             usuario.setTelefono(cursor.getString(2));
+            usuario.setIdFormaContacto(cursor.getString(3));
             listaUsuarios.add(usuario);
         }
         obtenerLista();
@@ -61,7 +63,7 @@ public class ListarUsuarios extends AppCompatActivity {
     private void obtenerLista() {
         listaInformacion = new ArrayList<String>();
         for (int i=0; i<listaUsuarios.size(); i++) {
-            listaInformacion.add(listaUsuarios.get(i).getId() + " - " + listaUsuarios.get(i).getNombre() + " - " + listaUsuarios.get(i).getTelefono());
+            listaInformacion.add(listaUsuarios.get(i).getId() + " - " + listaUsuarios.get(i).getNombre() + " - " + listaUsuarios.get(i).getTelefono() + " - " + listaUsuarios.get(i).getIdFormaContacto());
         }
     }
 }

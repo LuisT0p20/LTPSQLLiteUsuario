@@ -4,16 +4,16 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String telefono;
-    private int idFormaContacto;
+    private String idFormaContacto;
 
     public Usuario() {
         this.id = 0;
         nombre = "nnn";
         this.telefono = "00000";
-        this.idFormaContacto = 0;
+        this.idFormaContacto = "0";
     }
 
-    public Usuario(Integer id, String nombre, String telefono, int idFormaContacto) {
+    public Usuario(Integer id, String nombre, String telefono, String idFormaContacto) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -44,11 +44,11 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public int getIdFormaContacto() {
+    public String getIdFormaContacto() {
         return idFormaContacto;
     }
 
-    public void setIdFormaContacto(int idFormaContacto) {
+    public void setIdFormaContacto(String idFormaContacto) {
         this.idFormaContacto = idFormaContacto;
     }
 
@@ -58,7 +58,7 @@ public class Usuario {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", idFormaContacto=" + idFormaContacto +
+                ", idFormaContacto='" + idFormaContacto + '\'' +
                 '}';
     }
 }
